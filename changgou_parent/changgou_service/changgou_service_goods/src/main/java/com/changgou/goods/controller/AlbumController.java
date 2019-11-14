@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 @RestController
-@CrossOrigin
+@CrossOrigin//跨域注解
 @RequestMapping("/album")
 public class AlbumController {
 
