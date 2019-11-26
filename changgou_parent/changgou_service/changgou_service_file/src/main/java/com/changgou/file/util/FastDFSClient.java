@@ -9,7 +9,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class FastDFSClient {
+public class  FastDFSClient {
 
     private static org.slf4j.Logger logger = LoggerFactory.getLogger(FastDFSClient.class);
 

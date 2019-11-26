@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--输出hello数据-->
+<p th:text="${hello}"></p>
+<form th:action="@{/demo/hello}">
+    <input type="text" name="id">
+    <button>提交</button>
+</form>
+
+<table>
+    <tr>
+        <td>下标</td>
+        <td>编号</td>
+        <td>姓名</td>
+        <td>住址</td>
+    </tr>
+    <tr th:each="user,userStat:${list}">
+        <td th:text="${userStat.index}"></td>
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.address}"></td>
+    </tr>
+</table>
+<div th:each="map,mapStat:${map}">
+    <!--从一开始,不是索引从0开始-->
+    <div th:text="${mapStat.count}"></div>
+    <div th:text="${map}"></div>
+    key:<span th:text="${map.getKey()}"></span><br>
+    value:<span th:text="${map.getValue()}"></span><br>
+
+</div>
+<div th:each="names,namesStat:${names}">
+    <span th:text="${namesStat.count}"></span>
+    <span th:text="${names}"></span>
+</div>
+<span th:text="${#dates.format(date,'yyyy-MM-dd hh/mm/ss')}"></span>
+<span th:if="${(age>18)}">成年了</span>
+<span th:unless="${(age<18)}">和if是相反的</span>
+</body>
+</html>

@@ -39,7 +39,16 @@ public class SpuController {
         Goods goods = spuService.findGoosById(id);
         return new Result(true,StatusCode.OK,"查询成功",goods);
     }
-
+    /***
+     * 根据ID查询数据
+     * @param id
+     * @return
+     */
+    @GetMapping("/findSpuById/{id}")
+    public Result<Spu> findSpuById(@PathVariable String id){
+        Spu spu = spuService.findById(id);
+        return new Result(true,StatusCode.OK,"查询成功",spu);
+    }
 
     /***
      * 新增数据
@@ -55,20 +64,19 @@ public class SpuController {
 
     /***
      * 修改数据
-     * @param spu
-     * @param id
+     * @param goods
+     * @param
      * @return
      */
-    @PutMapping(value="/{id}")
-    public Result update(@RequestBody Spu spu,@PathVariable String id){
-        spu.setId(id);
-        spuService.update(spu);
+    @PutMapping
+    public Result update(@RequestBody Goods goods){
+        spuService.update(goods);
         return new Result(true,StatusCode.OK,"修改成功");
     }
 
 
     /***
-     * 根据ID删除品牌数据
+     * 根据ID逻辑删除
      * @param id
      * @return
      */
@@ -104,5 +112,46 @@ public class SpuController {
         return new Result(true,StatusCode.OK,"查询成功",pageResult);
     }
 
-
+    /**
+     * 商品审核
+     * @param id
+     * @return
+     */
+    @PutMapping("/audit/{id}")
+    public Result audit(@PathVariable("id") String id){
+        spuService.audit(id);
+        return new Result();
+    }
+    /**
+     * 商品下架
+     */
+    @PutMapping("/pull/{id}")
+    public Result pull(@PathVariable("id") String id){
+        spuService.pull(id);
+        return new Result();
+    }
+    /**
+     * 商品上架
+     */
+    @PutMapping("/put/{id}")
+    public Result put(@PathVariable("id") String id){
+        spuService.put(id);
+        return new Result();
+    }
+    /**
+     * 商品恢复
+     */
+    @PutMapping("/restore/{id}")
+    public Result restore(@PathVariable("id") String id){
+        spuService.restore(id);
+        return new Result();
+    }
+    /**
+     * 物理删除
+     */
+    @DeleteMapping("/realDelete/{id}")
+    public Result realDelete(@PathVariable("id") String id){
+        spuService.realDelete(id);
+        return new Result();
+    }
 }

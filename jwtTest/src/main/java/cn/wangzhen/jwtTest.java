@@ -18,7 +18,7 @@ public class jwtTest {
                 .setSubject("弯针")//设置主题
                 .setIssuedAt(new Date())//设置签发日期
                 .setExpiration(date)//设置令牌过期时间
-                .claim("roles","管理员")
+                .claim("roles","管理员")//设置角色自定义claim  载体自定义存放数据
                 .signWith(SignatureAlgorithm.HS256, "itcast");//设置签名使用hs256算法,并设置SecretKey(字符串)
         //构建并返回一个字符串
         String jwtToken = builder.compact();
@@ -28,4 +28,5 @@ public class jwtTest {
         Claims claims = Jwts.parser().setSigningKey("itcast").parseClaimsJws(jwtToken).getBody();
         System.out.println(claims);
     }
+
 }

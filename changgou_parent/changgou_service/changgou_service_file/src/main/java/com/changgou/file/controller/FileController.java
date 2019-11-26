@@ -5,6 +5,7 @@ import com.changgou.entity.StatusCode;
 import com.changgou.file.util.FastDFSClient;
 import com.changgou.file.util.FastDFSFile;
 import org.apache.commons.lang.StringUtils;
+import org.aspectj.util.FileUtil;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,7 +36,7 @@ public class FileController {
             FastDFSFile fastDFSFile = new FastDFSFile(originalFilename, fileBytes, substring);
             //根据工具上传文件接收返回参数
             String[] upload = FastDFSClient.upload(fastDFSFile);
-            //封装返回结果
+            //封装返回结果  fast的请求路径
             String url = FastDFSClient.getTrackerUrl() + upload[0] + "/" + upload[1];
             return new Result(true, StatusCode.OK, "文件上传成功", url);
         } catch (Exception e) {

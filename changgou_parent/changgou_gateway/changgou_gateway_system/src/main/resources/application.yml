@@ -15,7 +15,7 @@ spring:
       routes:
         - id: goods
           uri: lb://goods
-          predicates:
+          predicates: #断言 什么样的地址分发到上面的地址
             - Path=/goods/**
           filters:
             - StripPrefix= 1
